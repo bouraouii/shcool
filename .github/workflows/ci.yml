@@ -6,18 +6,23 @@ on:
       - dev # or your default branch
 
 jobs:
-  deploy : 
-     runs-on: ubuntu-latest
-     steps:
-        - names: Checkout
-          user: actions/checkout@v2
-        - name: npm install 
-         run: npm ci
-         working-directory: ./MY-APP
-        - name: Build app
-          run: npm run build
-          working-directory: ./MY-APP
-        - user: JamesIves/github-pages-deploy-actions@4.1.5
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: npm install
+        run: npm ci
+        working-directory: ./MY-APP
+
+      - name: Build app
+        run: npm run build
+        working-directory: ./MY-APP
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
-        branch: dev
-        folder: MY-APP/build
+          branch: gh-pages
+          folder: MY-APP/build
+          token: ${{ secrets.GITHUB_TOKEN }}
