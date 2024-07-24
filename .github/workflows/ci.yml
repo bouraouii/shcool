@@ -11,7 +11,7 @@ jobs:
      steps:
         - names: Checkout
           user: actions/checkout@v2
-        - name: NPM Install
+        - name: npm install 
          run: npm ci
          working-directory: ./MY-APP
         - name: Build app
