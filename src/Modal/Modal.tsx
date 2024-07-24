@@ -43,7 +43,7 @@ const ModalComponent: React.FC<ModalProps> = ({ isOpen, setIsOpen }) => {
               <div className="modal-content">
                 <div className="modal-header">
                   <h5 className="modal-title" id="exampleModalLabel">
-                    Enregistrement
+                    Enregistrement test
                   </h5>
                   <button
                     type="button"
