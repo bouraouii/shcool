@@ -32,5 +32,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          yarn global add gh-pages
-          gh-pages -d build
+          yarn deploy
