@@ -6,30 +6,18 @@ on:
       - dev # or your default branch
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+  deploy : 
+     runs-on: ubuntu-latest
+     steps:
+        - names: Checkout
+          user: actions/checkout@v2
+        - name: NPM Install
+         run: npm ci
+         working-directory: ./MY-APP
+        - name: Build app
+          run: npm run build
+          working-directory: ./MY-APP
+        - user: JamesIves/github-pages-deploy-actions@4.1.5
         with:
-          node-version: "16" # Specify your Node.js version
-
-      - name: Install dependencies
-        run: yarn install
-
-      - name: Build
-        run: yarn build
-
-      - name: Configure Git
-        run: |
-          git config --global user.email "bouraoui99261855@gmail.com"
-          git config --global user.name "bouraouii"
-
-      - name: Deploy
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          yarn gh-pages -u bouraoui99261855@gmail.com -d build
+        branch: dev
+        folder: MY-APP/build
