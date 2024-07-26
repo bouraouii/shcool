@@ -10,7 +10,7 @@ function Resume() {
         target="_blank"
         style={{ maxWidth: "250px" }}
       >
-        Download Resume
+        Download Resume test
       </Button>
     </div>
   );
