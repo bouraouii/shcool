@@ -34,4 +34,4 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: End message
-      run: echo 'all done'
+      run: echo 'all doneee'
