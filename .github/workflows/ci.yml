@@ -8,22 +8,17 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: "16" # Specify your Node.js version
-
       - name: Install dependencies
         run: yarn install
-
       - name: Build
         run: yarn build
-
       - name: Configure Git
         run: |
           git config --global user.email "bouraoui99261855@gmail.com"
@@ -31,6 +26,10 @@ jobs:
       - name: Deploy
       - name: Initialize the NPM config
         run: npm config set //registry.npm.org/:_authToken $NPM_TOKEN 
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
         env:
           NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: End message
